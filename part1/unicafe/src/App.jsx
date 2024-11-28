@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
 const Statistics = (props) => {
+
   const sum = props.good + props.neutral + props.bad
+
   if (sum === 0) {
     return (
       <div>
@@ -9,6 +11,7 @@ const Statistics = (props) => {
       </div>
     )
   }
+
   return (
     <table>
       <tbody>
@@ -42,6 +45,7 @@ const Button = (props) => {
 
 
 const App = () => {
+
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
