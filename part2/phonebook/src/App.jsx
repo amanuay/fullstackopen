@@ -10,7 +10,7 @@ const App = () => {
   const [status, setStatus] = useState('')
 
   const filteredPersons = persons?.filter(person => person.name.trim().toLowerCase().includes(filter.trim().toLowerCase()))
-  const lastId = persons[persons.length - 1]?.id
+  // const lastId = persons[persons.length - 1]?.id
 
   const form = document.querySelector('form')
 
@@ -42,9 +42,11 @@ const App = () => {
       }
     }
 
-    const newID = parseInt(lastId) + 1
     contactServices
-      .create({ name: newName, number: newNumber, id: newID.toString() })
+      .create({
+        name: newName,
+        number: newNumber
+      })
       .then(newperson => setPersons(persons.concat(newperson)))
       .then(() => {
         setNewName('')
@@ -56,6 +58,8 @@ const App = () => {
 
   const handleDelete = (id) => {
     const name = persons.filter(person => person.id === id)[0].name
+
+    console.log(persons.filter(person => person.id === id)[0].id)
 
     if (confirm(`confirm delete contact: ${name}`)) {
       contactServices
